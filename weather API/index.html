@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container
+        {
+           
+          
+           display: flex;
+           justify-content: space-between;
+           flex-wrap: wrap;
+     
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="container">
+        <!-- <p>Id : </p>
+        <img src="" alt="">
+        <p>email :</p>
+        <p>First Name</p>
+        <p>Last name</p> -->
+    </div>
+
+    <script>
+      function show()
+      {
+        fetch('https://reqres.in/api/users')
+        .then((res)=>res.json())
+        .then((data)=>{
+                let datas = data.data
+                console.log(datas);
+
+               let show = datas.forEach(e =>{
+                // let ids = document.createElement('p');
+                // let box = document.getElementById('container');
+                // ids.innerText = e.id;
+                // let email = document.createElement('p');
+                // email.innerText = e.email;
+               
+                // let image = document.createElement('img');
+                // image.src = e.avatar;
+                // console.log(image)
+
+                // box.appendChild(image)
+
+                let store = `
+                  <div style = "width:20%; height:500px; border : 1px solid black; margin : 10px 20px;">
+
+                       <h1 style = "padding-left : 20px;">${e.id}</h1>
+                <img style = "height: 300px;  display : flex; width : 100%" src=${e.avatar}>
+                <p  style = "padding-left : 20px;">${e.email}</span> 
+                <p  style = "padding-left : 20px;">${e.first_name + " " + e.last_name}</p>
+                    
+                    
+                    </div>
+
+                `
+                document.getElementById('container').innerHTML += store;
+               });
+             
+               
+            }
+            )
+        .catch((err)=>console.log(err))
+      }
+      show();
+    </script>
+</body>
+</html>
